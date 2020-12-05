@@ -1,34 +1,54 @@
 {
-    "name": "vscode-min-lang",
-    "displayName": "min Language",
-    "description": "Syntax highlighting for the min programming language",
-    "version": "0.0.1",
-    "engines": {
-        "vscode": "^1.51.0"
-    },
-    "categories": [
-        "Programming Languages"
-    ],
-    "contributes": {
-        "languages": [
-            {
-                "id": "min",
-                "aliases": [
-                    "min",
-                    "min"
-                ],
-                "extensions": [
-                    ".min"
-                ],
-                "configuration": "./language-configuration.json"
-            }
+  "name": "vscode-min-lang",
+  "displayName": "min",
+  "description": "Syntax highlighting for the min programming language",
+  "publisher": "h3rald",
+  "author": {
+    "name": "Fabio Cevasco",
+    "email": "h3rald@h3rald.com",
+    "url": "https://h3rald.com"
+  },
+  "license": "MIT",
+  "version": "0.1.0",
+  "homepage": "https://github.com/h3rald/vscode-min-lang/blob/master/README.md",
+  "icon": "images/logo.png",
+  "galleryBanner": {
+    "color": "#2B4737",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h3rald/vscode-min-lang.git"
+  },
+  "bugs": {
+    "url": "https://github.com/h3rald/vscode-min-lang/issues"
+  },
+  "engines": {
+    "vscode": "^1.51.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "min",
+        "aliases": [
+          "Min",
+          "min"
         ],
-        "grammars": [
-            {
-                "language": "min",
-                "scopeName": "source.min",
-                "path": "./syntaxes/min.tmLanguage.json"
-            }
-        ]
-    }
+        "extensions": [
+          ".min"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "min",
+        "scopeName": "source.min",
+        "path": "./syntaxes/min.tmLanguage.json"
+      }
+    ]
+  }
 }
