@@ -2,6 +2,10 @@
 
 All notable changes to the "vscode-min-lang" extension will be documented in this file.
 
+## 0.3.0 - 20210101
+
+- Added highlighting for **operator** (and **::**), **symbol**, **sigil**, and **==>**.
+
 ## 0.2.0 - 20201225
 
 - Added highlighting for **invoke** (and **\*** sigil) **expect-empty-stack** (**=-=**), **reverse-expect-dequote** (**--**), and **null**.

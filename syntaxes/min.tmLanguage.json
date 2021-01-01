@@ -32,7 +32,7 @@
     "control-symbol": {
       "patterns": [
         {
-          "match": "(?<=(\\s|^|\\(|\\{))(if|unless|when|foreach|times|while|raise|try|case|with|apply|dequote|>>|><|=>|=-=|--|->|=%|%|infix-dequote|prefix-dequote|tap|tap!|with|reverse-expect-dequote|expect-empty-stack)(?=(\\s|\\)|\\}|$))",
+          "match": "(?<=(\\s|^|\\(|\\{))(symbol|sigil|operator|if|unless|when|foreach|times|while|raise|try|case|with|apply|dequote|>>|><|=>|==>|::|=-=|--|->|=%|%|infix-dequote|prefix-dequote|tap|tap!|with|reverse-expect-dequote|expect-empty-stack)(?=(\\s|\\)|\\}|$))",
           "name": "keyword.control.min"
         }
       ]
