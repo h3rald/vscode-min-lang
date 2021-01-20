@@ -1,54 +1,59 @@
 {
-  "name": "vscode-min-lang",
-  "displayName": "min",
-  "description": "Syntax highlighting for the min programming language",
-  "publisher": "h3rald",
-  "author": {
-    "name": "Fabio Cevasco",
-    "email": "h3rald@h3rald.com",
-    "url": "https://h3rald.com"
-  },
-  "license": "MIT",
-  "version": "0.3.0",
-  "homepage": "https://github.com/h3rald/vscode-min-lang/blob/master/README.md",
-  "icon": "images/logo.png",
-  "galleryBanner": {
-    "color": "#2B4737",
-    "theme": "dark"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/h3rald/vscode-min-lang.git"
-  },
-  "bugs": {
-    "url": "https://github.com/h3rald/vscode-min-lang/issues"
-  },
-  "engines": {
-    "vscode": "^1.51.0"
-  },
-  "categories": [
-    "Programming Languages"
-  ],
-  "contributes": {
-    "languages": [
-      {
-        "id": "min",
-        "aliases": [
-          "Min",
-          "min"
-        ],
-        "extensions": [
-          ".min"
-        ],
-        "configuration": "./language-configuration.json"
-      }
+    "name": "vscode-min-lang",
+    "displayName": "min",
+    "description": "Syntax highlighting for the min programming language",
+    "publisher": "h3rald",
+    "author": {
+        "name": "Fabio Cevasco",
+        "email": "h3rald@h3rald.com",
+        "url": "https://h3rald.com"
+    },
+    "license": "MIT",
+    "version": "0.3.0",
+    "homepage": "https://github.com/h3rald/vscode-min-lang/blob/master/README.md",
+    "icon": "images/logo.png",
+    "galleryBanner": {
+        "color": "#2B4737",
+        "theme": "dark"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/h3rald/vscode-min-lang.git"
+    },
+    "bugs": {
+        "url": "https://github.com/h3rald/vscode-min-lang/issues"
+    },
+    "engines": {
+        "vscode": "^1.51.0"
+    },
+    "categories": [
+        "Programming Languages"
     ],
-    "grammars": [
-      {
-        "language": "min",
-        "scopeName": "source.min",
-        "path": "./syntaxes/min.tmLanguage.json"
-      }
-    ]
-  }
+    "contributes": {
+        "languages": [
+            {
+                "id": "min",
+                "aliases": [
+                    "Min",
+                    "min"
+                ],
+                "extensions": [
+                    ".min"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "min",
+                "scopeName": "source.min",
+                "path": "./syntaxes/min.tmLanguage.json"
+            }
+        ]
+    },
+    "__metadata": {
+        "id": "e0cbe7b4-08fd-40df-9464-3175f2be26fb",
+        "publisherDisplayName": "Fabio Cevasco",
+        "publisherId": "4231156c-ec6d-47e2-a28e-f772eb7596ad"
+    }
 }

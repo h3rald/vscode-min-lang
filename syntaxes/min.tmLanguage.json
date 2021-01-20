@@ -1,195 +1,252 @@
 {
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "min",
-  "scopeName": "source.min",
-  "patterns": [
-    {
-      "include": "#value"
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "min",
+    "scopeName": "source.min",
+    "patterns": [
+        {
+            "include": "#value"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "include": "#comments-inline"
+                },
+                {
+                    "include": "#comments-block"
+                },
+                {
+                    "include": "#comments-doc-inline"
+                },
+                {
+                    "include": "#comments-doc-block"
+                },
+                {
+                    "match": "^#!.*\\n",
+                    "name": "comment.line.shebang.min"
+                }
+            ]
+        },
+        "comments-inline": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.comment.min"
+                        }
+                    },
+                    "match": "(;).*$\\n?",
+                    "name": "comment.line.semicolon.min"
+                }
+            ]
+        },
+        "comments-doc-inline": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.comment.min"
+                        }
+                    },
+                    "match": "(;;).*$\\n?",
+                    "name": "comment.line.double.semicolon.min"
+                }
+            ]
+        },
+        "comments-block": {
+            "patterns": [
+                {
+                    "begin": "\\#\\|",
+                    "end": "\\|\\#",
+                    "name": "comment.block.hashpipe.min",
+                    "patterns": [
+                        {
+                            "include": "#comments-block"
+                        }
+                    ]
+                }
+            ]
+        },
+        "comments-doc-block": {
+            "patterns": [
+                {
+                    "begin": "\\#\\|\\|",
+                    "end": "\\|\\|\\#",
+                    "name": "comment.block.double.hashpipe.min",
+                    "patterns": [
+                        {
+                            "include": "#comments-block"
+                        }
+                    ]
+                }
+            ]
+        },
+        "number": {
+            "match": "(?<=(\\s|^|\\(|\\{))-?[0-9]*\\.?[0-9]+(?=(\\s|\\)|\\}|$))",
+            "name": "constant.numeric.min"
+        },
+        "control-symbol": {
+            "patterns": [
+                {
+                    "match": "(?<=(\\s|^|\\(|\\{))(symbol|sigil|operator|return|input|output|signature|typeclass|if|unless|when|foreach|times|while|raise|try|case|with|apply|dequote|>>|><|=>|==>|::|=-=|--|->|=%|%|infix-dequote|prefix-dequote|tap|tap!|with|reverse-expect-dequote|expect-empty-stack)(?=(\\s|\\)|\\}|$))",
+                    "name": "keyword.control.min"
+                }
+            ]
+        },
+        "quotation": {
+            "begin": "(\\()",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.array.begin.min"
+                }
+            },
+            "end": "(\\))",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.array.end.min"
+                }
+            },
+            "name": "meta.structure.array.min",
+            "patterns": [
+                {
+                    "include": "#value"
+                }
+            ]
+        },
+        "placeholder": {
+            "patterns": [
+                {
+                    "match": "(\\$)([0-9]+|#)",
+                    "name": "variable.other.min"
+                }
+            ]
+        },
+        "dictionary": {
+            "begin": "(\\{)",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.dictionary.begin.min"
+                }
+            },
+            "end": "(\\})",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.dictionary.end.min"
+                }
+            },
+            "name": "meta.structure.dictionary.min",
+            "patterns": [
+                {
+                    "include": "#value"
+                }
+            ]
+        },
+        "quoted-symbol": {
+            "begin": "(?<=(\\s|^|\\(|\\{))(['])",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.operator.min"
+                }
+            },
+            "end": "(?=(\\s|\\)|\\}|$))",
+            "patterns": [
+                {
+                    "match": "[^\\s\\']+",
+                    "name": "entity.name.function.min"
+                }
+            ]
+        },
+        "definitions": {
+            "patterns": [
+                {
+                    "match": "(?<=(\\s|^|\\(|\\{))([:@#%/=+*])[^:@#=*>%~!\\s]+?(?=(\\s|\\)|\\}|$))",
+                    "name": "variable.name.min"
+                }
+            ]
+        },
+        "constant": {
+            "match": "(?<=(\\s|^|\\(|\\{))(true|false|ROOT|pi|e|tau|null)(?=(\\s|\\)|\\}|$))",
+            "name": "constant.language.min"
+        },
+        "string": {
+            "begin": "\"",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.min"
+                }
+            },
+            "end": "\"",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.min"
+                }
+            },
+            "name": "string.quoted.double.min",
+            "patterns": [
+                {
+                    "include": "#escaped-char"
+                },
+                {
+                    "include": "#placeholder"
+                }
+            ]
+        },
+        "escaped-char": {
+            "patterns": [
+                {
+                    "match": "\\\\[nNaAcClLfFtTvVbBeE]",
+                    "name": "constant.character.escape.letter.min"
+                },
+                {
+                    "match": "\\\\\"",
+                    "name": "constant.character.escape.double-quote.min"
+                },
+                {
+                    "match": "\\'",
+                    "name": "constant.character.escape.single-quote.min"
+                },
+                {
+                    "match": "\\\\[0-9]+",
+                    "name": "constant.character.escape.chardecimalvalue.min"
+                },
+                {
+                    "match": "\\\\[xX][0-9A-Fa-f]{2}",
+                    "name": "constant.character.escape.hex.min"
+                },
+                {
+                    "match": "\\\\",
+                    "name": "constant.character.escape.backslash.min"
+                }
+            ]
+        },
+        "value": {
+            "patterns": [
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#quotation"
+                },
+                {
+                    "include": "#definitions"
+                },
+                {
+                    "include": "#control-symbol"
+                },
+                {
+                    "include": "#quoted-symbol"
+                },
+                {
+                    "include": "#string"
+                },
+                {
+                    "include": "#number"
+                },
+                {
+                    "include": "#constant"
+                }
+            ]
+        }
     }
-  ],
-  "repository": {
-    "comments": {
-      "patterns": [
-        {
-          "captures": {
-            "1": {
-              "name": "punctuation.definition.comment.min"
-            }
-          },
-          "match": "(;).*$\\n?",
-          "name": "comment.line.semicolon.min"
-        },
-        {
-          "match": "^#!.*\\n",
-          "name": "comment.line.shebang.min"
-        }
-      ]
-    },
-    "number": {
-      "match": "(?<=(\\s|^|\\(|\\{))-?[0-9]*\\.?[0-9]+(?=(\\s|\\)|\\}|$))",
-      "name": "constant.numeric.min"
-    },
-    "control-symbol": {
-      "patterns": [
-        {
-          "match": "(?<=(\\s|^|\\(|\\{))(symbol|sigil|operator|if|unless|when|foreach|times|while|raise|try|case|with|apply|dequote|>>|><|=>|==>|::|=-=|--|->|=%|%|infix-dequote|prefix-dequote|tap|tap!|with|reverse-expect-dequote|expect-empty-stack)(?=(\\s|\\)|\\}|$))",
-          "name": "keyword.control.min"
-        }
-      ]
-    },
-    "quotation": {
-      "begin": "(\\()",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.array.begin.min"
-        }
-      },
-      "end": "(\\))",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.array.end.min"
-        }
-      },
-      "name": "meta.structure.array.min",
-      "patterns": [
-        {
-          "include": "#value"
-        }
-      ]
-    },
-    "placeholder": {
-      "patterns": [
-        {
-          "match": "(\\$)([0-9]+|#)",
-          "name": "variable.other.min"
-        }
-      ]
-    },
-    "dictionary": {
-      "begin": "(\\{)",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.dictionary.begin.min"
-        }
-      },
-      "end": "(\\})",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.dictionary.end.min"
-        }
-      },
-      "name": "meta.structure.dictionary.min",
-      "patterns": [
-        {
-          "include": "#value"
-        }
-      ]
-    },
-    "quoted-symbol": {
-      "begin": "(?<=(\\s|^|\\(|\\{))(['])",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.operator.min"
-        }
-      },
-      "end": "(?=(\\s|\\)|\\}|$))",
-      "patterns": [
-        {
-          "match": "[^\\s\\']+",
-          "name": "entity.name.function.min"
-        }
-      ]
-    },
-    "definitions": {
-      "patterns": [
-        {
-          "match": "(?<=(\\s|^|\\(|\\{))([:@#%/=+*])[^:@#=*>%~!\\s]+?(?=(\\s|\\)|\\}|$))",
-          "name": "variable.name.min"
-        }
-      ]
-    },
-    "constant": {
-      "match": "(?<=(\\s|^|\\(|\\{))(true|false|ROOT|pi|e|tau|null)(?=(\\s|\\)|\\}|$))",
-      "name": "constant.language.min"
-    },
-    "string": {
-      "begin": "\"",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.begin.min"
-        }
-      },
-      "end": "\"",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.string.end.min"
-        }
-      },
-      "name": "string.quoted.double.min",
-      "patterns": [
-        {
-          "include": "#escaped-char"
-        },
-        {
-          "include": "#placeholder"
-        }
-      ]
-    },
-    "escaped-char": {
-      "patterns": [
-        {
-          "match": "\\\\[nNaAcClLfFtTvVbBeE]",
-          "name": "constant.character.escape.letter.min"
-        },
-        {
-          "match": "\\\\\"",
-          "name": "constant.character.escape.double-quote.min"
-        },
-        {
-          "match": "\\'",
-          "name": "constant.character.escape.single-quote.min"
-        },
-        {
-          "match": "\\\\[0-9]+",
-          "name": "constant.character.escape.chardecimalvalue.min"
-        },
-        {
-          "match": "\\\\[xX][0-9A-Fa-f]{2}",
-          "name": "constant.character.escape.hex.min"
-        },
-        {
-          "match": "\\\\",
-          "name": "constant.character.escape.backslash.min"
-        }
-      ]
-    },
-    "value": {
-      "patterns": [
-        {
-          "include": "#quotation"
-        },
-        {
-          "include": "#definitions"
-        },
-        {
-          "include": "#control-symbol"
-        },
-        {
-          "include": "#quoted-symbol"
-        },
-        {
-          "include": "#string"
-        },
-        {
-          "include": "#number"
-        },
-        {
-          "include": "#comments"
-        },
-        {
-          "include": "#constant"
-        }
-      ]
-    }
-  }
 }
