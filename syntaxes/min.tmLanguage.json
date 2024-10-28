@@ -97,7 +97,7 @@
     "control-symbol": {
       "patterns": [
         {
-          "match": "(?<=(\\s|^|\\(|\\{))(symbol|sigil|input|output|operator|return|include|require|lambda|signature|lambda-bind|bind|define|typeclass|typealias|if|unless|when|foreach|times|while|raise|try|case|with|apply|dequote|quote|quotesym|>>|><|=>|==>|::|=-=|--|->|&&|\\|\\||=%|%|infix-dequote|prefix-dequote|tap|tap!|with|expect|expect-all|expect-any|expect-empty-stack)(?=(\\s|\\)|\\}|$))",
+          "match": "(?<=(\\s|^|\\(|\\{))(symbol|sigil|constructor|operator|return|include|require|lambda|lambda-bind|bind|define|typeclass|typealias|if|unless|when|foreach|times|while|raise|try|case|with|apply|dequote|quote|quotesym|quotecmd|>>|><|=>|==>|::|=-=|--|->|&&|\\|\\||=%|%|infix-dequote|prefix-dequote|tap|tap!|with|expect|expect-all|expect-any|expect-empty-stack)(?=(\\s|\\)|\\}|$))",
           "name": "keyword.control.min"
         }
       ]
@@ -119,6 +119,27 @@
       "patterns": [
         {
           "include": "#value"
+        }
+      ]
+    },
+    "command": {
+      "begin": "(\\[)",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.command.begin.min"
+        }
+      },
+      "end": "(\\])",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.command.end.min"
+        }
+      },
+      "name": "meta.structure.command.min",
+      "patterns": [
+        {
+          "match": "([^\\]]+)",
+          "name": "string.quoted.other.command.min"
         }
       ]
     },
@@ -150,31 +171,78 @@
         }
       ]
     },
-    "quoted-symbol": {
-      "begin": "(?<=(\\s|^|\\(|\\{))(['])",
+    "system-module": {
+      "patterns": [
+        {
+          "match": "(?<=(\\s|^|\\(|\\{))(global|crypto|dict|fs|http|io|math|net|stack|store|sys|time|xml)",
+          "name": "storage.type.module.min"
+        }
+      ]
+    },
+    "dot": {
+      "patterns": [
+        {
+          "match": "[.]",
+          "name": "keyword.control.dot.min"
+        }
+      ]
+    },
+    "bang": {
+      "patterns": [
+        {
+          "match": "[!](?=(\\s|\\)|\\}|$))",
+          "name": "keyword.control.bang.min"
+        }
+      ]
+    },
+    "symbol": {
+      "patterns": [
+        {
+          "include": "#system-module"
+        },
+        {
+          "include": "#dot"
+        },
+        {
+          "include": "#bang"
+        },
+        {
+          "match": "([a-zA-Z_][a-zA-Z0-9/?+*_-]*)",
+          "name": "variable.name.min"
+        }
+      ]
+    },
+    "sigil-symbol": {
+      "begin": "([:@'~$?^])",
       "beginCaptures": {
-        "1": {
-          "name": "keyword.operator.min"
+        "0": {
+          "name": "keyword.control.sigil.min"
         }
       },
       "end": "(?=(\\s|\\)|\\}|$))",
       "patterns": [
         {
-          "match": "[^\\s\\']+",
+          "include": "#symbol"
+        }
+      ]
+    },
+    "autopop-symbol": {
+      "begin": "(?<=(\\s|^|\\(|\\{))",
+      "end": "([!])(?=(\\s|\\)|\\}|$))",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.bang.min"
+        }
+      },
+      "patterns": [
+        {
+          "match": "([a-zA-Z_][a-zA-Z0-9/!?+.*_-]*)",
           "name": "entity.name.function.min"
         }
       ]
     },
-    "definitions": {
-      "patterns": [
-        {
-          "match": "(?<=(\\s|^|\\(|\\{))([:@%/+*^])[^:@#=*>%~!\\s]+?(?=(\\s|\\)|\\}|$))",
-          "name": "variable.name.min"
-        }
-      ]
-    },
     "constant": {
-      "match": "(?<=(\\s|^|\\(|\\{))(true|false|ROOT|pi|e|tau|null)(?=(\\s|\\)|\\}|$))",
+      "match": "(?<=(\\s|^|\\(|\\{))(true|false|global|pi|e|tau|null)(?=(\\s|\\)|\\}|$))",
       "name": "constant.language.min"
     },
     "string": {
@@ -204,47 +272,47 @@
       "patterns": [
         {
           "match": "\\\\[cC]|\\\\[rR]",
-          "name": "constant.character.escape.carriagereturn.nim"
+          "name": "constant.character.escape.carriagereturn.min"
         },
         {
           "match": "\\\\[lL]|\\\\[nN]",
-          "name": "constant.character.escape.linefeed.nim"
+          "name": "constant.character.escape.linefeed.min"
         },
         {
           "match": "\\\\[fF]",
-          "name": "constant.character.escape.formfeed.nim"
+          "name": "constant.character.escape.formfeed.min"
         },
         {
           "match": "\\\\[tT]",
-          "name": "constant.character.escape.tabulator.nim"
+          "name": "constant.character.escape.tabulator.min"
         },
         {
           "match": "\\\\[vV]",
-          "name": "constant.character.escape.verticaltabulator.nim"
+          "name": "constant.character.escape.verticaltabulator.min"
         },
         {
           "match": "\\\\\\\"",
-          "name": "constant.character.escape.double-quote.nim"
+          "name": "constant.character.escape.double-quote.min"
         },
         {
           "match": "\\\\'",
-          "name": "constant.character.escape.single-quote.nim"
+          "name": "constant.character.escape.single-quote.min"
         },
         {
           "match": "\\\\[aA]",
-          "name": "constant.character.escape.alert.nim"
+          "name": "constant.character.escape.alert.min"
         },
         {
           "match": "\\\\[bB]",
-          "name": "constant.character.escape.backspace.nim"
+          "name": "constant.character.escape.backspace.min"
         },
         {
           "match": "\\\\[eE]",
-          "name": "constant.character.escape.escape.nim"
+          "name": "constant.character.escape.escape.min"
         },
         {
           "match": "\\\\\\\\",
-          "name": "constant.character.escape.backslash.nim"
+          "name": "constant.character.escape.backslash.min"
         }
       ]
     },
@@ -257,16 +325,13 @@
           "include": "#quotation"
         },
         {
-          "include": "#definitions"
+          "include": "#command"
         },
         {
           "include": "#type"
         },
         {
           "include": "#control-symbol"
-        },
-        {
-          "include": "#quoted-symbol"
         },
         {
           "include": "#string"
@@ -276,6 +341,12 @@
         },
         {
           "include": "#constant"
+        },
+        {
+          "include": "#sigil-symbol"
+        },
+        {
+          "include": "#symbol"
         }
       ]
     }

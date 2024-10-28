@@ -2,6 +2,12 @@
 
 All notable changes to the "vscode-min-lang" extension will be documented in this file.
 
+## 0.5.0 - 20241028
+
+- Improved highlighting for symbols, accounting for sigils, bang, and system modules.
+- added support for commands.
+- Reviewed control symbols.
+
 ## 0.4.0 - 20211115
 
 - Fixed character escapes in strings.

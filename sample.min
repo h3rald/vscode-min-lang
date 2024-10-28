@@ -1,0 +1,31 @@
+#|
+This is a block comment
+...that spans multiple lines
+|#
+
+; This is a line comment
+
+[ ls -r ] "\n" split :test
+
+ ( sys.pwd puts! ) ^test2
+
+ "aaa $#" =% @test2
+
+( 1 2 3 4 ) 2 get @test
+
+(
+    symbol test1
+    (str :aaa ==> bool :result)
+    ( true return)
+) ::
+
+ $path ?test  
+
+'test 
+
+(puts) ^aaa 
+
+{
+    1 :aaa
+    true :b
+}
