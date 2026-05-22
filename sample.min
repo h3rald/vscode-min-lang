@@ -5,7 +5,9 @@ This is a block comment
 
 ; This is a line comment
 
-0x45FFAA
+0x45FFAA :test
+
+{4 :a (stack.dup *) ^test}
 
 [ ls -r ] "\n" split :test
 
