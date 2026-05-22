@@ -2,6 +2,10 @@
 
 All notable changes to the "vscode-min-lang" extension will be documented in this file.
 
+## 0.6.0 - 20260522
+
+- Fixed highlighting for non-decimal numbers.
+
 ## 0.5.0 - 20241028
 
 - Improved highlighting for symbols, accounting for sigils, bang, and system modules.

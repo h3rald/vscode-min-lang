@@ -83,8 +83,24 @@
       ]
     },
     "number": {
-      "match": "(?<=(\\s|^|\\(|\\{))-?[0-9]*\\.?[0-9]+(?=(\\s|\\)|\\}|$))",
-      "name": "constant.numeric.min"
+      "patterns": [
+        {
+          "match": "(?<=(\\s|^|\\(|\\{))-?0x[0-9a-fA-F]+(?=(\\s|\\)|\\}|$))",
+          "name": "constant.numeric.hexadecimal.min"
+        },
+        {
+          "match": "(?<=(\\s|^|\\(|\\{))-?0b[01]+(?=(\\s|\\)|\\}|$))",
+          "name": "constant.numeric.binary.min"
+        },
+        {
+          "match": "(?<=(\\s|^|\\(|\\{))-?0o[0-7]+(?=(\\s|\\)|\\}|$))",
+          "name": "constant.numeric.octal.min"
+        },
+        {
+          "match": "(?<=(\\s|^|\\(|\\{))-?\\d+(\\.\\d+)?([eE][+-]?\\d+)?(?=(\\s|\\)|\\}|$))",
+          "name": "constant.numeric.decimal.min"
+        }
+      ]
     },
     "type": {
       "patterns": [

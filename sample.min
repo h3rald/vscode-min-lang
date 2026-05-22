@@ -5,6 +5,8 @@ This is a block comment
 
 ; This is a line comment
 
+0x45FFAA
+
 [ ls -r ] "\n" split :test
 
  ( sys.pwd puts! ) ^test2
